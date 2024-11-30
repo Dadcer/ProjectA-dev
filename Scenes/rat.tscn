@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjdl282cgqljm"]
+[gd_scene load_steps=4 format=3 uid="uid://cjdl282cgqljm"]
 
-[ext_resource type="Texture2D" uid="uid://c464chbqer6k5" path="res://pixel-art-rat-graphic-i1l1viuicm62pva3.jpg" id="1_1l53k"]
-[ext_resource type="Script" path="res://Scripts/rat.cs" id="1_c6gkg"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n6idu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_55o7f"]
 radius = 60.4152
@@ -11,12 +10,11 @@ size = Vector2(85, 40)
 
 [node name="rat" type="CharacterBody2D"]
 input_pickable = true
-script = ExtResource("1_c6gkg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(45, 18)
 scale = Vector2(0.163405, 0.162835)
-texture = ExtResource("1_1l53k")
+texture = SubResource("CompressedTexture2D_n6idu")
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false

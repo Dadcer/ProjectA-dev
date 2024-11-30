@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://cv0q6s1xgm8t1"]
+
+[ext_resource type="Script" path="res://Scripts/Corsour.cs" id="1_0n54k"]
+[ext_resource type="Texture2D" uid="uid://bhpw8gha07cwm" path="res://marker.png" id="1_cnryf"]
+[ext_resource type="Texture2D" uid="uid://bf80gese5sn7i" path="res://Textures/ui/cursor.png" id="2_q0rhj"]
+[ext_resource type="Texture2D" uid="uid://biwub4ja4j2im" path="res://Textures/ui/cursor_interactable.png" id="3_pcic7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rdfoa"]
+radius = 21.0
+
+[node name="Corsour" type="Node2D" node_paths=PackedStringArray("sprite", "actionDetectorArea")]
+script = ExtResource("1_0n54k")
+sprite = NodePath("Sprite2D")
+actionDetectorArea = NodePath("CursourActionDetector")
+defaultIcon = ExtResource("2_q0rhj")
+interactableIcon = ExtResource("3_pcic7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(8, 8)
+scale = Vector2(2.6, 2.6)
+texture = ExtResource("1_cnryf")
+
+[node name="CursourActionDetector" type="Area2D" parent="."]
+position = Vector2(8.10623e-06, 8.10623e-06)
+scale = Vector2(0.999999, 0.999999)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CursourActionDetector"]
+position = Vector2(7, 9)
+shape = SubResource("CircleShape2D_rdfoa")

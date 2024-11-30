@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1axuq7hlqhk0"
-path="res://.godot/imported/sword_0001_Фигура-2.png-1d9710830e2e45a42b3b64f533bd7785.ctex"
+uid="uid://dx2c0mvttwirm"
+path="res://.godot/imported/movement_point.png-37f01318d637fa3926d06cc696f74e8b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sword_0001_Фигура-2.png"
-dest_files=["res://.godot/imported/sword_0001_Фигура-2.png-1d9710830e2e45a42b3b64f533bd7785.ctex"]
+source_file="res://Textures/ui/movement_point.png"
+dest_files=["res://.godot/imported/movement_point.png-37f01318d637fa3926d06cc696f74e8b.ctex"]
 
 [params]
 

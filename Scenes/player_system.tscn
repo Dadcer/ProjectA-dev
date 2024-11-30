@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://sojym2ed5tad"]
+
+[ext_resource type="Texture2D" uid="uid://bv5f7teb6ogmo" path="res://Scenes/player/textures/player_idle.png" id="1_0eg4h"]
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_rodwe"]
+[ext_resource type="Script" path="res://Scripts/LivingState.cs" id="3_hywv2"]
+[ext_resource type="Script" path="res://Scripts/FightTrigger.cs" id="4_vco5o"]
+[ext_resource type="PackedScene" uid="uid://cv0q6s1xgm8t1" path="res://Scenes/corsour.tscn" id="5_io3or"]
+[ext_resource type="Texture2D" uid="uid://dx2c0mvttwirm" path="res://Textures/ui/movement_point.png" id="5_p7tvb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tgn6p"]
+size = Vector2(67, 196)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x7sgt"]
+radius = 1085.65
+
+[node name="PlayerSystem" type="CharacterBody2D" node_paths=PackedStringArray("movementPoint")]
+position = Vector2(127, 170)
+script = ExtResource("1_rodwe")
+movementPoint = NodePath("movementPoint")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0eg4h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7, 2)
+shape = SubResource("RectangleShape2D_tgn6p")
+
+[node name="LivingState" type="Node2D" parent="."]
+script = ExtResource("3_hywv2")
+
+[node name="FightManager" type="Node2D" parent="."]
+
+[node name="FightTrigger" type="Node2D" parent="."]
+script = ExtResource("4_vco5o")
+
+[node name="Area2D" type="Area2D" parent="FightTrigger"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FightTrigger/Area2D"]
+shape = SubResource("CircleShape2D_x7sgt")
+
+[node name="movementPoint" type="Sprite2D" parent="."]
+scale = Vector2(6.505, 6.505)
+texture = ExtResource("5_p7tvb")
+
+[node name="Corsour" parent="." node_paths=PackedStringArray("player") instance=ExtResource("5_io3or")]
+player = NodePath("..")
+
+[connection signal="body_entered" from="FightTrigger/Area2D" to="FightTrigger" method="_on_area_2d_body_entered"]

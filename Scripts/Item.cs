@@ -1,15 +1,11 @@
 using Godot;
 using System;
 
-public partial class Item : Node2D
+public partial class Item : Area2D, ICursorInteractable
 {
-	[Export]
-	public InventoryItem item;
-	public void playerEnteredSignal(Node2D body) 
-	{
-		
-		
-	}
+    public void Interact(Corsour cursor)
+    {
+        GD.Print("interact!!!!");
+    }
+
 }
-
-
