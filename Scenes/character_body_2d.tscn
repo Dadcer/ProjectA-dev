@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://dx7fntncdrjbq"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_eji2i"]
+[ext_resource type="Texture2D" uid="uid://7n40h5atflal" path="res://icon.svg" id="1_xk14n"]
+[ext_resource type="Script" path="res://Scripts/EnemyFighter.cs" id="3_innnt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ptgtc"]
+size = Vector2(122, 118)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jgred"]
+radius = 669.965
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ov50y"]
+radius = 674.452
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_eji2i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xk14n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ptgtc")
+
+[node name="EnemyFighter" type="Area2D" parent="." node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_innnt")
+enemy = NodePath("..")
+
+[node name="PlayerCheck (лишнее)" type="Area2D" parent="EnemyFighter"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyFighter/PlayerCheck (лишнее)"]
+shape = SubResource("CircleShape2D_jgred")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyFighter"]
+shape = SubResource("CircleShape2D_ov50y")
+
+[node name="EnemyLivingState" type="Node2D" parent="."]
+
+[connection signal="body_entered" from="EnemyFighter/PlayerCheck (лишнее)" to="EnemyFighter" method="_on_player_check_body_entered"]

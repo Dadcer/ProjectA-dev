@@ -1,36 +1,64 @@
 using Godot;
 using System;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 
 public partial class Player : CharacterBody2D
 {
+
 	[Export]
 	public int Speed = 400;
 	[Export]
 	public Sprite2D movementPoint;
-
+	[Export]
+	public PlayerFighter playerFighter;
 	private Vector2 targetPoint;
 	public bool isMoving = false;
-	public Player() {
-		
+	public float distanceTraveled;
+	public Player()
+	{
+
 	}
 
-	public void ProcessMovement() {
-		movementPoint.Visible = false;
-		
-		if(!isMoving) return;
-		movementPoint.Visible = true;
-		movementPoint.GlobalPosition = targetPoint;
+	public void ProcessMovement()
+	{
+		if (playerFighter.isBattle is false)
+		{
+			movementPoint.Visible = false;
 
-		Velocity=Position.DirectionTo(targetPoint)*Speed;
-		if(GlobalPosition.DistanceTo(targetPoint) <= 40.0f){
-			isMoving = false;
+			if (!isMoving) return;
+			movementPoint.Visible = true;
+			movementPoint.GlobalPosition = targetPoint;
+
+			Velocity = Position.DirectionTo(targetPoint) * Speed;
+			if (GlobalPosition.DistanceTo(targetPoint) <= 40.0f)
+			{
+				isMoving = false;
+			}
+			MoveAndSlide();
 		}
-		
-
-		MoveAndSlide();
 	}
-	public void MoveTo(Vector2 toPoint){
+	public void ProcessMovementInBattle(float delta)
+	{
+		if (playerFighter.isBattle is true && playerFighter.isTurn is true)
+		{
+			movementPoint.Visible = false;
+
+			if (!isMoving) return;
+			movementPoint.Visible = true;
+			movementPoint.GlobalPosition = targetPoint;
+
+			Velocity = Position.DirectionTo(targetPoint) * Speed;
+			if (GlobalPosition.DistanceTo(targetPoint) <= 40.0f)
+			{
+				isMoving = false;
+			}
+			MoveAndSlide();
+		}
+
+	}
+	public void MoveTo(Vector2 toPoint)
+	{
 		targetPoint = toPoint;
 		isMoving = true;
 	}
@@ -38,5 +66,6 @@ public partial class Player : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		ProcessMovement();
+		ProcessMovementInBattle((float)delta);
 	}
 }
