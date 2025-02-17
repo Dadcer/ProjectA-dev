@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://sojym2ed5tad"]
+[gd_scene load_steps=13 format=3 uid="uid://sojym2ed5tad"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_rodwe"]
 [ext_resource type="Script" path="res://Scripts/PlayerFighter.cs" id="2_udavs"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cv0q6s1xgm8t1" path="res://Scenes/corsour.tscn" id="5_io3or"]
 [ext_resource type="Texture2D" uid="uid://dx2c0mvttwirm" path="res://Textures/ui/movement_point.png" id="5_p7tvb"]
 [ext_resource type="Texture2D" uid="uid://dtsnsqo4q1epc" path="res://Scenes/player/textures/player_loaded.png" id="8_1pouj"]
+[ext_resource type="PackedScene" uid="uid://drllsb0m38c4g" path="res://Scenes/player_ui.tscn" id="9_ia7kk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vtdj"]
 radius = 108.24
@@ -58,3 +59,16 @@ position = Vector2(-1, -7.00002)
 scale = Vector2(0.768555, 0.815429)
 texture = ExtResource("8_1pouj")
 metadata/_edit_group_ = true
+
+[node name="Node" type="Node" parent="."]
+
+[node name="UIContainer" type="Control" parent="Node"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerUI" parent="Node/UIContainer" instance=ExtResource("9_ia7kk")]
+layout_mode = 1

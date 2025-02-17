@@ -1,0 +1,111 @@
+[gd_scene load_steps=3 format=3 uid="uid://drllsb0m38c4g"]
+
+[ext_resource type="Texture2D" uid="uid://1fhnli8n5xlu" path="res://Textures/ui/inventory/card-display.png" id="1_j2ptc"]
+[ext_resource type="Texture2D" uid="uid://dbouogpwhhcju" path="res://Scenes/items/revolver/revolver.png" id="2_oqw2b"]
+
+[node name="PlayerUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -232.0
+offset_top = -195.0
+offset_right = 233.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 465.0
+offset_bottom = 195.0
+texture = ExtResource("1_j2ptc")
+expand_mode = 2
+
+[node name="Control" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 465.0
+offset_bottom = 195.0
+
+[node name="GridContainer" type="GridContainer" parent="Control/Control"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 38.0
+offset_right = 447.0
+offset_bottom = 132.0
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 5
+
+[node name="ItemContainer2" type="MarginContainer" parent="Control/Control/GridContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Control/GridContainer/ItemContainer2"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/Control/GridContainer/ItemContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/Control/GridContainer/ItemContainer2/VBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("2_oqw2b")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Control/Control/GridContainer/ItemContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "предмет 1"
+horizontal_alignment = 1
+
+[node name="ItemContainer3" type="MarginContainer" parent="Control/Control/GridContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Control/GridContainer/ItemContainer3"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/Control/GridContainer/ItemContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/Control/GridContainer/ItemContainer3/VBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("2_oqw2b")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Control/Control/GridContainer/ItemContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "пред
+"
+horizontal_alignment = 1
+
+[node name="ItemContainer4" type="MarginContainer" parent="Control/Control/GridContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Control/GridContainer/ItemContainer4"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/Control/GridContainer/ItemContainer4/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/Control/GridContainer/ItemContainer4/VBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("2_oqw2b")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Control/Control/GridContainer/ItemContainer4/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "супер предмет"
+horizontal_alignment = 1
