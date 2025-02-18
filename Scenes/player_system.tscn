@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://sojym2ed5tad"]
 
-[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_rodwe"]
+[ext_resource type="Script" path="res://Scripts/PlayerSystem.cs" id="1_rodwe"]
 [ext_resource type="Script" path="res://Scripts/PlayerFighter.cs" id="2_udavs"]
 [ext_resource type="Script" path="res://Scripts/LivingState.cs" id="3_hywv2"]
 [ext_resource type="Script" path="res://Scripts/FightTrigger.cs" id="4_vco5o"]
@@ -18,10 +18,11 @@ size = Vector2(67, 196)
 [sub_resource type="CircleShape2D" id="CircleShape2D_x7sgt"]
 radius = 1085.65
 
-[node name="PlayerSystem" type="CharacterBody2D" node_paths=PackedStringArray("movementPoint")]
+[node name="PlayerSystem" type="CharacterBody2D" node_paths=PackedStringArray("movementPoint", "playerFighter")]
 position = Vector2(562, 576)
 script = ExtResource("1_rodwe")
 movementPoint = NodePath("movementPoint")
+playerFighter = NodePath("PlayerFighter")
 
 [node name="PlayerFighter" type="Area2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("2_udavs")
@@ -37,8 +38,9 @@ shape = SubResource("RectangleShape2D_tgn6p")
 [node name="LivingState" type="Node2D" parent="."]
 script = ExtResource("3_hywv2")
 
-[node name="FightManager" type="Node2D" parent="."]
+[node name="FightManager" type="Node2D" parent="." node_paths=PackedStringArray("fightTrigger")]
 script = ExtResource("4_y86v4")
+fightTrigger = NodePath("../FightTrigger")
 
 [node name="FightTrigger" type="Area2D" parent="."]
 script = ExtResource("4_vco5o")
@@ -58,3 +60,5 @@ position = Vector2(-1, -7.00002)
 scale = Vector2(0.768555, 0.815429)
 texture = ExtResource("8_1pouj")
 metadata/_edit_group_ = true
+
+[connection signal="area_entered" from="FightTrigger" to="FightTrigger" method="_on_area_entered"]

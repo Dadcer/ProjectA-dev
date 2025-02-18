@@ -4,24 +4,24 @@ using System.Security.Cryptography.X509Certificates;
 
 public partial class Enemy : CharacterBody2D
 {
-	public Vector2 target;
-	public float speed = 100;
-	public bool isTurn;
-	public bool isBattle;
+	[Export]
+	public EnemyFighter enemyFighter;
 	public Node2D player;
-	public double actionPoints;
-	public void Move()
+	public Vector2 target;
+	public float speed = 50;
+	public void Move(float delta)
 	{
-		if (isBattle is true && isTurn is true)
+		if (enemyFighter.isBattle && enemyFighter.isTurn)
 		{
 			target = player.Position;
-			Velocity = GlobalPosition.DirectionTo(target) * speed;
-			actionPoints = actionPoints - 0.5;
+			Velocity = Position.DirectionTo(target) * speed;
 			MoveAndSlide();
+			enemyFighter.moving(delta);
 		}
 	}
 	public override void _Process(double delta)
 	{
-		Move();
+		player = enemyFighter.player;
+		Move((float)delta);
 	}
 }

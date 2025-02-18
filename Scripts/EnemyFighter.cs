@@ -1,50 +1,60 @@
 using Godot;
 using System;
 
-public partial class EnemyFighter : Node2D, IFighter
+public partial class EnemyFighter : Area2D, IFighter
 {
-	public bool isBattle = true;
-	public bool isTurn = true;
-	[Export]
-	public Enemy enemy;
-	public double actionPoints = 50;
-	public void _on_player_check_body_entered(Node2D body)
+	public bool isBattle;
+	public bool isTurn;
+	public Node2D player;
+	public float actionPoints = 50;
+	public float actionPointUseSpeed = 50.0f;
+
+	public void _on_body_entered(Node2D body)
 	{
-		if (body is Player)
+		if (body is PlayerSystem)
 		{
-			enemy.player = body;
+			player = body;
 		}
 	}
 	public void StartBattle()
 	{
 		isBattle = true;
-		isTurn = true;
 	}
 	public void TakeTurn()
 	{
+		isTurn = true;
+	}
+	public void TurnBehaivor()
+	{
 
 	}
-	public void EndTurn()
+	public void moving(float delta)
+	{
+		actionPoints = actionPoints - (delta * actionPointUseSpeed);
+	}
+	public bool EndTurn()
 	{
 		if (actionPoints <= 0)
 		{
 			isTurn = false;
+			return true;
 		}
+		return false;
 	}
+	public void RefreshActionPoints()
+	{
+		actionPoints = 100.0f;
+	}
+
 	public void FightEnd()
 	{
 
 	}
 	public override void _Ready()
 	{
-		enemy.actionPoints = actionPoints;
 	}
 	public override void _Process(double delta)
 	{
-		enemy.isBattle = isBattle;
-		enemy.isTurn = isTurn;
-		actionPoints = enemy.actionPoints;
 		EndTurn();
-
 	}
 }

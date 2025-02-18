@@ -4,21 +4,23 @@ using System.Collections.Generic;
 
 public partial class FightTrigger : Area2D
 {
+    public bool startBattle = false;
+    public List<Area2D> members = new List<Area2D>();
+    public void _on_area_entered(Area2D fighter)
+    {
+        if (fighter is IFighter)
+        {
+            members.Add(fighter);
+            startBattle = true;
+        }
+    }
     public override void _Ready()
     {
-        AreaEntered += OnAreaEntered;
-    }
-    public List<Node2D> members = new List<Node2D>();
-    public void OnAreaEntered(Node2D node)
-    {
-        if (node is EnemyFighter)
-        {
-            members.Add(node);
-        }
+
     }
     public override void _Process(double delta)
     {
-        GD.Print(members[0]);
+
     }
 
 }

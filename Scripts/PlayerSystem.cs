@@ -3,7 +3,7 @@ using System;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 
-public partial class Player : CharacterBody2D
+public partial class PlayerSystem : CharacterBody2D
 {
 
 	[Export]
@@ -15,7 +15,7 @@ public partial class Player : CharacterBody2D
 	private Vector2 targetPoint;
 	public bool isMoving = false;
 	public float distanceTraveled;
-	public Player()
+	public PlayerSystem()
 	{
 
 	}
@@ -54,6 +54,7 @@ public partial class Player : CharacterBody2D
 				isMoving = false;
 			}
 			MoveAndSlide();
+			playerFighter.moving(delta);
 		}
 
 	}

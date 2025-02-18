@@ -4,29 +4,45 @@ using System;
 public partial class PlayerFighter : Area2D, IFighter
 {
 
-	public bool isBattle = true;
-	public bool isTurn = true;
+	public bool isBattle;
+	public bool isTurn;
 	[Export]
-	public Player player;
-	public float actionPointUseSpeed = 10.0f;
-	public float actionPoints = 100.0f;
+	public PlayerSystem player;
+	public float actionPointUseSpeed = 20.0f;
+	public float actionPoints = 100;
 	public float distanceTraveled;
+	public void moving(float delta)
+	{
+		actionPoints = actionPoints - (delta * actionPointUseSpeed);
+	}
 	public void StartBattle()
 	{
-		isTurn = true;
 		isBattle = true;
 	}
-	public void EndTurn()
+	public void TakeTurn()
 	{
-		isTurn = false;
+		isTurn = true;
+	}
+	public void TurnBehaivor()
+	{
+
+	}
+	public bool EndTurn()
+	{
+		if (actionPoints <= 0)
+		{
+			isTurn = false;
+			return true;
+		}
+		return false;
+	}
+	public void RefreshActionPoints()
+	{
+		actionPoints = 100.0f;
 	}
 	public void FightEnd()
 	{
 
-	}
-	public void TakeTurn()
-	{
-		actionPoints = 100;
 	}
 	public override void _Ready()
 	{
@@ -38,9 +54,6 @@ public partial class PlayerFighter : Area2D, IFighter
 		{
 			actionPoints -= actionPointUseSpeed * (float)delta;
 		}
-		if (actionPoints <= 0.0f)
-		{
-			EndTurn();
-		}
+		EndTurn();
 	}
 }
