@@ -7,18 +7,21 @@ public partial class InventoryTrigger : Area2D
 	public Inventory inventory;
 	[Export]
 	public PlayerInventoryUI inventoryUI;
-	public void _on_inventory_trigger_area_entered(Area2D area) {
-		if(area is ItemScene itemScene) {
-			inventory.addInventory(itemScene.item);
+
+	public void OnAreaEntered(Area2D area)
+	{
+		if (area is ItemScene itemScene)
+		{
+			inventory.addItem(itemScene.item);
 			itemScene.deleteItemByTake();
-			inventoryUI.setItemsTexture(itemScene.item.texture);
 		}
 	}
 	public override void _Ready()
 	{
+		AreaEntered += OnAreaEntered;
 	}
 	public override void _Process(double delta)
 	{
-		
+
 	}
 }
