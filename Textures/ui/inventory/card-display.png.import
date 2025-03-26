@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0if22c1x30ik"
-path="res://.godot/imported/bullet.png-bf93d1b665b641a4649255cc2e392484.ctex"
+uid="uid://sc0btl7exocw"
+path="res://.godot/imported/card-display.png-699ce1c707413b24282b5fc865ab1848.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/items/revolver/bullet.png"
-dest_files=["res://.godot/imported/bullet.png-bf93d1b665b641a4649255cc2e392484.ctex"]
+source_file="res://Textures/ui/inventory/card-display.png"
+dest_files=["res://.godot/imported/card-display.png-699ce1c707413b24282b5fc865ab1848.ctex"]
 
 [params]
 

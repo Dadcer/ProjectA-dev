@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://sojym2ed5tad"]
+[gd_scene load_steps=16 format=3 uid="uid://sojym2ed5tad"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerSystem.cs" id="1_rodwe"]
 [ext_resource type="Script" path="res://Scripts/PlayerFighter.cs" id="2_udavs"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cv0q6s1xgm8t1" path="res://Scenes/corsour.tscn" id="5_io3or"]
 [ext_resource type="Texture2D" uid="uid://dx2c0mvttwirm" path="res://Textures/ui/movement_point.png" id="5_p7tvb"]
 [ext_resource type="Texture2D" uid="uid://dtsnsqo4q1epc" path="res://Scenes/player/textures/player_loaded.png" id="8_1pouj"]
+[ext_resource type="Script" path="res://Scripts/Inventory.cs" id="9_hhntg"]
+[ext_resource type="Script" path="res://Scripts/InventoryTrigger.cs" id="9_utj5p"]
+[ext_resource type="PackedScene" uid="uid://js47yk37kcbv" path="res://Scenes/player_ui.tscn" id="11_w8s5f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3vtdj"]
 radius = 108.24
@@ -17,6 +20,9 @@ size = Vector2(67, 196)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x7sgt"]
 radius = 1085.65
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yybnq"]
+radius = 306.105
 
 [node name="PlayerSystem" type="CharacterBody2D" node_paths=PackedStringArray("movementPoint", "playerFighter")]
 position = Vector2(562, 576)
@@ -61,4 +67,31 @@ scale = Vector2(0.768555, 0.815429)
 texture = ExtResource("8_1pouj")
 metadata/_edit_group_ = true
 
+[node name="Inventory" type="Node2D" parent="."]
+script = ExtResource("9_hhntg")
+
+[node name="InventoryTrigger" type="Area2D" parent="." node_paths=PackedStringArray("inventory", "inventoryUI")]
+script = ExtResource("9_utj5p")
+inventory = NodePath("../Inventory")
+inventoryUI = NodePath("../PlayerUI/PlayerInventoryUI")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InventoryTrigger"]
+position = Vector2(-3, 8)
+shape = SubResource("CircleShape2D_yybnq")
+
+[node name="PlayerUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerInventoryUI" parent="PlayerUI" node_paths=PackedStringArray("inventory") instance=ExtResource("11_w8s5f")]
+layout_mode = 1
+offset_left = 489.0
+offset_top = 16.0
+offset_right = 489.0
+offset_bottom = 16.0
+inventory = NodePath("../../Inventory")
+
 [connection signal="area_entered" from="FightTrigger" to="FightTrigger" method="_on_area_entered"]
+[connection signal="area_entered" from="InventoryTrigger" to="InventoryTrigger" method="_on_inventory_trigger_area_entered"]

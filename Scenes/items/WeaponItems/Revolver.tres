@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://didakpy20efte"]
+
+[ext_resource type="Script" path="res://Scripts/ItemsScript/ItemWeapon.cs" id="1_o7yr5"]
+[ext_resource type="Texture2D" uid="uid://dbouogpwhhcju" path="res://Scenes/items/WeaponItems/revolver/revolver.png" id="2_1e2bk"]
+
+[resource]
+script = ExtResource("1_o7yr5")
+weapDamage = 0.0
+weapActionPointsUse = 0.0
+weapAccuracy = 0.0
+name = "Револьер"
+texture = ExtResource("2_1e2bk")
